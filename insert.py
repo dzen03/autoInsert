@@ -26,10 +26,11 @@ def pre_main():
 
     for item in prog:
         item = item.upper()
-        parsed = re.findall("""^\\s*([0-9A-F]{3})\\s*(\\+?)\\s*([0-9A-F]{4})\\s*$""", item)
+        parsed = re.findall("""^\\s*([0-9A-F]{3}):\\s*(\\+?)\\s*([0-9A-F]{4})\\s*$""", item)
         if len(parsed) != 1:
             continue
         reg, start, data = parsed[0]
+        reg = '0' + reg
         if start == '+':
             startReg = reg
         program.append((reg, data))
