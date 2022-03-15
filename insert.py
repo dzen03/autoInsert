@@ -32,7 +32,7 @@ def pre_main():
         reg, start, data = parsed[0]
         if start == '+':
             startReg = reg
-        program.append(reg, data)
+        program.append((reg, data))
         print(reg, data)
 
 
