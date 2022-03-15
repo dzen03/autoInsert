@@ -26,16 +26,14 @@ def pre_main():
 
     for item in prog:
         item = item.upper()
-        parsed = re.findall("""^\\s*([0-9A-F]{3}):\\s*(\\+?)\\s*([0-9A-F]{4})\\s*$""", item)
+        parsed = re.findall("""^\\s*([0-9A-F]{3})\\s*(\\+?)\\s*([0-9A-F]{4})\\s*$""", item)
         if len(parsed) != 1:
             continue
         reg, start, data = parsed[0]
-        bin_reg = hex_to_bin(reg)
-        bin_data = hex_to_bin(data)
         if start == '+':
-            startReg = bin_reg
-        program.append((bin_reg, bin_data))
-        print(bin_reg, bin_data)
+            startReg = reg
+        program.append(reg, data)
+        print(reg, data)
 
 
 def main():
@@ -48,7 +46,7 @@ def main():
 
     pyautogui.typewrite(startReg)
     pyautogui.press(ENTER_ADDRESS)
-    pyautogui.alert('READY!')
+    pyautogui.alert('DONE!')
 
 
 if __name__ == '__main__':
